@@ -1,0 +1,168 @@
+<Window x:Class="PsikologTestApp.Tests.RenkliKelimeler.RenkliKelimelerResultWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Renkli Kelimeler - Sonuçlar" Height="720" Width="820"
+        MinWidth="520" MinHeight="420"
+        WindowStartupLocation="CenterScreen"
+        Background="#F5F5F5">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Padding="20,20,20,0">
+            <StackPanel HorizontalAlignment="Stretch">
+
+                <TextBlock Text="Test Sonuçlarınız"
+                           FontSize="32" FontWeight="Bold"
+                           Foreground="#333333"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,16"/>
+
+                <!-- Özet İstatistikler -->
+                <Border Background="White" CornerRadius="10" Padding="20"
+                        BorderBrush="#DDD" BorderThickness="1"
+                        Margin="0,0,0,16">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                            <TextBlock Text="Test Türü: "        FontSize="14" Foreground="#666" Width="210"/>
+                            <TextBlock x:Name="TestNameBlock"    FontSize="14" Foreground="#333" FontWeight="Bold"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                            <TextBlock Text="Test Tarihi: "      FontSize="14" Foreground="#666" Width="210"/>
+                            <TextBlock x:Name="TestDateBlock"    FontSize="14" Foreground="#333" FontWeight="Bold"/>
+                        </StackPanel>
+
+                        <Separator Margin="0,8" Background="#EEE"/>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                            <TextBlock Text="Toplam Deneme: "    FontSize="14" Foreground="#666" Width="210"/>
+                            <TextBlock x:Name="TotalBlock"       FontSize="14" Foreground="#333" FontWeight="Bold"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                            <TextBlock Text="Doğru: "            FontSize="14" Foreground="#666" Width="210"/>
+                            <TextBlock x:Name="CorrectBlock"     FontSize="14" Foreground="#4CAF50" FontWeight="Bold"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                            <TextBlock Text="Yanlış: "           FontSize="14" Foreground="#666" Width="210"/>
+                            <TextBlock x:Name="WrongBlock"       FontSize="14" Foreground="#F44336" FontWeight="Bold"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                            <TextBlock Text="Doğruluk Oranı: "   FontSize="14" Foreground="#666" Width="210"/>
+                            <TextBlock x:Name="AccuracyBlock"    FontSize="14" Foreground="#2196F3" FontWeight="Bold"/>
+                        </StackPanel>
+
+                        <Separator Margin="0,8" Background="#EEE"/>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                            <TextBlock Text="Ort. Tepki Süresi: " FontSize="14" Foreground="#666" Width="210"/>
+                            <TextBlock x:Name="AvgBlock"          FontSize="14" Foreground="#4CAF50" FontWeight="Bold"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                            <TextBlock Text="En Hızlı Tepki: "   FontSize="14" Foreground="#666" Width="210"/>
+                            <TextBlock x:Name="MinBlock"         FontSize="14" Foreground="#2196F3" FontWeight="Bold"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="En Yavaş Tepki: "   FontSize="14" Foreground="#666" Width="210"/>
+                            <TextBlock x:Name="MaxBlock"         FontSize="14" Foreground="#FF5722" FontWeight="Bold"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- Timeline -->
+                <TextBlock Text="Zaman Çizelgesi"
+                           FontSize="18" FontWeight="Bold" Foreground="#333" Margin="0,0,0,8"/>
+                <Border Background="White" CornerRadius="10"
+                        BorderBrush="#DDD" BorderThickness="1" Margin="0,0,0,8" Padding="14,10">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <Rectangle Width="18" Height="12" Fill="#43A047" RadiusX="2" RadiusY="2" Margin="0,0,4,0"/>
+                            <TextBlock Text="Doğru" FontSize="11" Foreground="#555" Margin="0,0,14,0" VerticalAlignment="Center"/>
+                            <Rectangle Width="18" Height="12" Fill="#E53935" RadiusX="2" RadiusY="2" Margin="0,0,4,0"/>
+                            <TextBlock Text="Yanlış" FontSize="11" Foreground="#555" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <ItemsControl x:Name="TimelineRows"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Ayrıntılı Tablo -->
+                <TextBlock Text="Ayrıntılı Deneme Raporu"
+                           FontSize="18" FontWeight="Bold"
+                           Foreground="#333" Margin="0,0,0,8"/>
+                <Border Background="White" CornerRadius="10"
+                        BorderBrush="#DDD" BorderThickness="1"
+                        Margin="0,0,0,24" Padding="0">
+                    <DataGrid x:Name="TrialsGrid"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True"
+                              HeadersVisibility="Column"
+                              GridLinesVisibility="Horizontal"
+                              AlternatingRowBackground="#F7F7F7"
+                              CanUserReorderColumns="False"
+                              CanUserResizeRows="False"
+                              BorderThickness="0"
+                              RowHeight="34" FontSize="13">
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="Background" Value="#EEEEEE"/>
+                                <Setter Property="Padding" Value="12,8"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="FontSize" Value="13"/>
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+                        <DataGrid.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="Padding" Value="12,6"/>
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="DataGridCell">
+                                            <Border Padding="{TemplateBinding Padding}"
+                                                    Background="{TemplateBinding Background}">
+                                                <ContentPresenter VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </DataGrid.CellStyle>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="#"             Binding="{Binding TrialNumber}" Width="40"/>
+                            <DataGridTextColumn Header="Kelime"        Binding="{Binding WordText}"    Width="100"/>
+                            <DataGridTextColumn Header="Görüntü Rengi" Binding="{Binding DisplayColor}"  Width="120"/>
+                            <DataGridTextColumn Header="Seçilen"       Binding="{Binding SelectedColor}" Width="100"/>
+                            <DataGridTextColumn Header="Sonuç"         Binding="{Binding Sonuc}"       Width="80"/>
+                            <DataGridTextColumn Header="Tepki Süresi"  Binding="{Binding TepkiSuresi}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Border>
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Butonlar -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal"
+                    HorizontalAlignment="Center" Margin="0,12,0,16">
+            <Button Content="🏠 Ana Sayfa"
+                    Click="HomeButton_Click"
+                    Padding="15,10" FontSize="14"
+                    Background="#4CAF50" Foreground="White"
+                    Cursor="Hand" Width="150" Height="45" Margin="0,0,15,0"/>
+            <Button Content="🔄 Tekrar Et"
+                    Click="RetryButton_Click"
+                    Padding="15,10" FontSize="14"
+                    Background="#2196F3" Foreground="White"
+                    Cursor="Hand" Width="150" Height="45" Margin="0,0,15,0"/>
+            <Button Content="❌ Çık"
+                    Click="ExitButton_Click"
+                    Padding="15,10" FontSize="14"
+                    Background="#F44336" Foreground="White"
+                    Cursor="Hand" Width="150" Height="45"/>
+        </StackPanel>
+    </Grid>
+</Window>

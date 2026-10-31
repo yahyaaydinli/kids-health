@@ -1,0 +1,122 @@
+<Window x:Class="PsikologTestApp.Tests.YuruYurume.YuruYurumeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Yürü ve Yürüme Testi"
+        WindowStyle="None"
+        WindowState="Maximized"
+        Background="#111111"
+        Foreground="White"
+        KeyDown="Window_KeyDown">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>   <!-- Üst bar -->
+            <RowDefinition Height="*"/>    <!-- Uyaran alanı -->
+            <RowDefinition Height="90"/>   <!-- Alt bilgi -->
+        </Grid.RowDefinitions>
+
+        <!-- Üst Bar -->
+        <Border Grid.Row="0" Background="#1a1a1a" Padding="28,0">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock Text="Yürü ve Yürüme"
+                           FontSize="22" FontWeight="Bold"
+                           VerticalAlignment="Center" Margin="0,0,40,0"/>
+
+                <TextBlock Text="Kalan Süre: " FontSize="16"
+                           VerticalAlignment="Center" Margin="0,0,8,0"/>
+                <TextBlock x:Name="TimeDisplay" Text="05:00"
+                           FontSize="26" FontWeight="Bold"
+                           Foreground="#FF9800" VerticalAlignment="Center" MinWidth="100"/>
+
+                <TextBlock Text="Doğru Bas: " FontSize="16"
+                           VerticalAlignment="Center" Margin="40,0,8,0"/>
+                <TextBlock x:Name="HitDisplay" Text="0"
+                           FontSize="22" FontWeight="Bold"
+                           Foreground="#43A047" VerticalAlignment="Center" MinWidth="40"/>
+
+                <TextBlock Text="Kaçırma: " FontSize="16"
+                           VerticalAlignment="Center" Margin="20,0,8,0"/>
+                <TextBlock x:Name="MissDisplay" Text="0"
+                           FontSize="22" FontWeight="Bold"
+                           Foreground="#FF9800" VerticalAlignment="Center" MinWidth="40"/>
+
+                <TextBlock Text="Yanlış Bas: " FontSize="16"
+                           VerticalAlignment="Center" Margin="20,0,8,0"/>
+                <TextBlock x:Name="FalseAlarmDisplay" Text="0"
+                           FontSize="22" FontWeight="Bold"
+                           Foreground="#E53935" VerticalAlignment="Center" MinWidth="40"/>
+
+                <Button Content="⏹ Bitir" Click="EndTestButton_Click"
+                        Padding="10,4" FontSize="13" FontWeight="Bold"
+                        Background="#E53935" Foreground="White"
+                        Cursor="Hand" Height="40" BorderThickness="0"
+                        Margin="40,0,0,0" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Uyaran + Geri Bildirim Alanı -->
+        <Grid Grid.Row="1">
+            <!-- Büyük daire -->
+            <Border x:Name="StimulusCircle"
+                    Width="340" Height="340"
+                    CornerRadius="170"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Opacity="0"/>
+
+            <!-- Başlat talimatı -->
+            <TextBlock x:Name="HintBlock"
+                       Text="Başlamak için herhangi bir tuşa basın"
+                       FontSize="22" Foreground="#AAAAAA"
+                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+            <!-- Geri bildirim -->
+            <Border x:Name="FeedbackBorder"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Margin="0,230,0,0"
+                    Padding="24,10" CornerRadius="12"
+                    Opacity="0">
+                <TextBlock x:Name="FeedbackText"
+                           FontSize="22" FontWeight="Bold"
+                           HorizontalAlignment="Center"/>
+            </Border>
+        </Grid>
+
+        <!-- Alt Bilgi Barı -->
+        <Border Grid.Row="2" Background="#1a1a1a" Padding="0,14">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                <Ellipse Width="36" Height="36" Fill="#43A047" VerticalAlignment="Center"/>
+                <TextBlock Text=" → SPACE tuşuna bas"
+                           FontSize="17" Foreground="#CCCCCC"
+                           VerticalAlignment="Center" Margin="0,0,40,0"/>
+                <Ellipse Width="36" Height="36" Fill="#E53935" VerticalAlignment="Center"/>
+                <TextBlock Text=" → Basma"
+                           FontSize="17" Foreground="#CCCCCC"
+                           VerticalAlignment="Center"/>
+            </StackPanel>
+        </Border>
+        <!-- Duraklat Overlay -->
+        <Grid x:Name="PauseOverlay" Grid.RowSpan="3"
+              Panel.ZIndex="20" Background="#CC000000" Visibility="Collapsed">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="⏸ Test Duraklatıldı"
+                           FontSize="36" FontWeight="Bold"
+                           Foreground="White" HorizontalAlignment="Center" Margin="0,0,0,30"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Content="▶ Devam Et" Click="ResumeButton_Click"
+                            Padding="20,12" FontSize="16" FontWeight="Bold"
+                            Background="#43A047" Foreground="White"
+                            Cursor="Hand" Width="180" Height="52" Margin="0,0,20,0"/>
+                    <Button Content="⏹ Testi Bitir" Click="EndTestButton_Click"
+                            Padding="20,12" FontSize="16" FontWeight="Bold"
+                            Background="#E53935" Foreground="White"
+                            Cursor="Hand" Width="180" Height="52"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

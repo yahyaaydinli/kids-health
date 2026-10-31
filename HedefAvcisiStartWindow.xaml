@@ -1,0 +1,145 @@
+<Window x:Class="PsikologTestApp.HedefAvcisiStartWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Hedef Avcısı Testi - Başlat" Height="730" Width="600" 
+        WindowStartupLocation="CenterScreen"
+        Background="#F5F5F5">
+    <Grid>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="Hedef Avcısı Testi" 
+                       FontSize="36" 
+                       FontWeight="Bold" 
+                       Foreground="#333333"
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,30"/>
+            
+            <TextBlock TextAlignment="Center"
+                       FontSize="14"
+                       Foreground="#666666"
+                       TextWrapping="Wrap"
+                       Width="500"
+                       Margin="0,0,0,30">
+                <Run Text="Bu testte ekranda rastgele harfler gösterilecektir."/>
+                <LineBreak/>
+                <Run Text="Belirlenen harf görüldüğünde hemen SPACE tuşuna basınız."/>
+                <LineBreak/>
+                <Run Text="Reaksiyon süreniz ölçülecektir."/>
+            </TextBlock>
+            
+            <!-- Harf Gösterim Süresi Seçimi -->
+            <TextBlock Text="Harf Gösterim Süresi (ms):" 
+                       FontSize="16" 
+                       Foreground="#333333"
+                       HorizontalAlignment="Center"
+                       Margin="0,10,0,6"/>
+
+            <StackPanel HorizontalAlignment="Center" Width="420" Margin="0,0,0,4">
+                <Slider x:Name="DisplayIntervalSlider"
+                        Minimum="0" Maximum="3000"
+                        Value="500"
+                        TickFrequency="100"
+                        IsSnapToTickEnabled="True"
+                        SmallChange="100"
+                        LargeChange="500"
+                        ValueChanged="DisplayIntervalSlider_ValueChanged"
+                        Margin="0,0,0,4"/>
+                <Grid>
+                    <TextBlock Text="0 ms" HorizontalAlignment="Left" FontSize="11" Foreground="#999999"/>
+                    <TextBlock x:Name="IntervalValueLabel"
+                               Text="500 ms"
+                               HorizontalAlignment="Center"
+                               FontSize="14" FontWeight="Bold"
+                               Foreground="#2196F3"/>
+                    <TextBlock Text="3000 ms" HorizontalAlignment="Right" FontSize="11" Foreground="#999999"/>
+                </Grid>
+            </StackPanel>
+
+            <!-- Harfler Arası Bekleme Süresi Seçimi -->
+            <TextBlock Text="Harfler Arası Bekleme Süresi (ms):" 
+                       FontSize="16" 
+                       Foreground="#333333"
+                       HorizontalAlignment="Center"
+                       Margin="0,16,0,6"/>
+
+            <StackPanel HorizontalAlignment="Center" Width="420" Margin="0,0,0,4">
+                <Slider x:Name="GapIntervalSlider"
+                        Minimum="0" Maximum="2000"
+                        Value="200"
+                        TickFrequency="50"
+                        IsSnapToTickEnabled="True"
+                        SmallChange="50"
+                        LargeChange="200"
+                        ValueChanged="GapIntervalSlider_ValueChanged"
+                        Margin="0,0,0,4"/>
+                <Grid>
+                    <TextBlock Text="0 ms" HorizontalAlignment="Left" FontSize="11" Foreground="#999999"/>
+                    <TextBlock x:Name="GapValueLabel"
+                               Text="200 ms"
+                               HorizontalAlignment="Center"
+                               FontSize="14" FontWeight="Bold"
+                               Foreground="#FF9800"/>
+                    <TextBlock Text="2000 ms" HorizontalAlignment="Right" FontSize="11" Foreground="#999999"/>
+                </Grid>
+            </StackPanel>
+
+            <TextBlock Text="Test Süresini Seçin:" 
+                       FontSize="16" 
+                       Foreground="#333333"
+                       HorizontalAlignment="Center"
+                       Margin="0,14,0,0"/>
+            
+            <StackPanel Orientation="Horizontal" 
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,20">
+                <Button x:Name="Button5Min" 
+                        Click="StartTest_Click" 
+                        Tag="5"
+                        Content="⏱️ 5 Dakika" 
+                        Padding="15,10" 
+                        FontSize="14"
+                        Background="#2196F3" 
+                        Foreground="White"
+                        Cursor="Hand"
+                        Width="120"
+                        Margin="0,0,15,0"/>
+                
+                <Button x:Name="Button10Min" 
+                        Click="StartTest_Click" 
+                        Tag="10"
+                        Content="⏱️ 10 Dakika" 
+                        Padding="15,10" 
+                        FontSize="14"
+                        Background="#2196F3" 
+                        Foreground="White"
+                        Cursor="Hand"
+                        Width="120"
+                        Margin="0,0,15,0"/>
+                
+                <Button x:Name="Button15Min" 
+                        Click="StartTest_Click" 
+                        Tag="15"
+                        Content="⏱️ 15 Dakika" 
+                        Padding="15,10" 
+                        FontSize="14"
+                        Background="#2196F3" 
+                        Foreground="White"
+                        Cursor="Hand"
+                        Width="120"/>
+            </StackPanel>
+            
+            <Button Content="← Geri" 
+                    Click="BackButton_Click"
+                    Padding="15,8" 
+                    FontSize="12"
+                    Background="#666666" 
+                    Foreground="White"
+                    Cursor="Hand"
+                    Width="100"
+                    HorizontalAlignment="Center"
+                    Margin="0,20,0,0"/>
+        </StackPanel>
+    </Grid>
+</Window>
