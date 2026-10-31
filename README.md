@@ -36,6 +36,8 @@ PsikologTestApp/
 ├── Services/        # Veri işleme, test ve hesaplama servisleri
 └── Tests/           # Uygulama birim testleri (Unit Tests)
 ```
+## Program Menüsü ve İçerik Görünümü
+<img width="775" height="796" alt="image" src="https://github.com/user-attachments/assets/561afa70-e64e-4710-87ac-ac3b1c530964" />
 
 ---
 
